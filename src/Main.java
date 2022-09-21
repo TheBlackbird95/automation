@@ -10,8 +10,22 @@ public class Main {
 
         WebDriver wd = new ChromeDriver();
 
-        wd.get("https://google.com/");
-        Thread.sleep(1000);
+        wd.get("https://demoqa.com/");
+        wd.manage().window().maximize();
+        Thread.sleep(5000); // pauziraj ovaj red za 5 sekundi
+        String url = wd.getCurrentUrl();
+        System.out.println("URL:" + url);
+        String title = wd.getTitle();
+        System.out.println("Title: " + title);
+        wd.manage().window().maximize();
+
+        wd.navigate().refresh();
+        wd.get("https://google.com");
+        wd.navigate().back();
+        wd.navigate().forward();
+
+
+
         wd.close();
     }
 }
