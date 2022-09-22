@@ -8,7 +8,7 @@ import java.util.List;
 public class DemoDohvatiElement {
     public static void main(String[] args) throws InterruptedException {
         System.setProperty("webdriver.chrome.driver",
-                "C:\\Users\\Test\\Desktop\\Zadaci\\Java\\automation\\chromedriver.exe");
+                PropertiesReader.getInstance().getValue("WEBDRIVER.CHROMEDRIVER"));
 
         WebDriver wd = new ChromeDriver();
 
