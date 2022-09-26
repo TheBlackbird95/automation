@@ -4,6 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
+import utils.PropertiesReader;
 
 public class ZadatakKliktanje {
     public static void main(String[] args) throws InterruptedException {

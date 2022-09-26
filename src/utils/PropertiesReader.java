@@ -1,12 +1,13 @@
+package utils;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Objects;
 import java.util.Properties;
 
 /**
  * Singleton implementation for properties reader.<br><br>
- * It encapsulates the constructor so that there could be only one instance of Properties object as well as PropertiesReader object.
+ * It encapsulates the constructor so that there could be only one instance of Properties object as well as utils.PropertiesReader object.
  * Furthermore, the exposed methods are {@link  PropertiesReader#getInstance()  getInstance()} which returns the current instance or creates one if necessary,
  * and {@link  PropertiesReader#getInstance(String)} the version with a directory name as a parameter.
  * The {@link PropertiesReader#getValue(String) getValue(String value)} method will return the corresponding value from the properties file.<br>
