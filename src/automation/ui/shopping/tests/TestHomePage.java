@@ -1,6 +1,6 @@
 package automation.ui.shopping.tests;
 
-import automation.ui.shopping.pages.ViewCart;
+import automation.ui.shopping.pages.ViewCartPage;
 import utils.PropertiesReader;
 import automation.ui.shopping.pages.HomePage;
 import org.openqa.selenium.WebDriver;
@@ -13,26 +13,28 @@ public class TestHomePage {
     public static WebDriver wd = new ChromeDriver();
 
     HomePage homePage = new HomePage(wd);
-    ViewCart viewCart = new ViewCart(wd);
+    ViewCartPage viewCartPage = new ViewCartPage(wd);
 
     @BeforeSuite
     public void configure (){
         System.setProperty("webdriver.chrome.driver",
                 PropertiesReader.getInstance().getValue("WEBDRIVER.CHROMEDRIVER"));
+        wd.get("https://www.automationexercise.com/");
     }
 
     @Test
     public void test1() throws InterruptedException {
 
-        wd.get("https://www.automationexercise.com/");
+
 
         homePage.clickOnHome();
 
-        homePage.scrollToDress(1);
+        homePage.scrollToDress(3);
+        // Assert.assertThrows(() -> homePage.scrollToDress(100)); //unhappy path -test prolazi nesto sto nije moguce
 
-        homePage.hoverToDress(1);
+        homePage.hoverToDress(3);
 
-        homePage.clickToAddCartButton();
+        homePage.clickToAddCartButton(3);
 
         Assert.assertEquals(homePage.getModalTitle(), "Added!", "Trebalo bi da je dodato u korpu!");
     }
@@ -42,7 +44,7 @@ public class TestHomePage {
 
         homePage.clickOnViewCardButton();
 
-        Assert.assertEquals(viewCart.getActual(), "Blue Top", "Trebalo bi biti ono sto smo kliknuli!");
+        Assert.assertEquals(viewCartPage.getActual(), homePage.getExpectedText() , "Trebalo bi biti ono sto smo kliknuli!");
 
         wd.close();
     }
