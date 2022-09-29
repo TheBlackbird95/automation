@@ -29,6 +29,10 @@ public class SignupLoginPage {
     private String ZIPCOTE_CSS_SELECTOR = "zipcode";
     private String MOBILE_NUMBER_CSS_SELECTOR = "mobile_number";
     private String CREATE_ACCOUNT_BUTTON_XPATH = "/html[1]/body[1]/section[1]/div[1]/div[1]/div[1]/div[1]/form[1]/button[1]";
+    private String EMAIL_LOGIN_XPATH = "/html[1]/body[1]/section[1]/div[1]/div[1]/div[1]/div[1]/form[1]/input[2]";
+    private String PASSWORD_LOGIN_XPATH = "/html[1]/body[1]/section[1]/div[1]/div[1]/div[1]/div[1]/form[1]/input[3]";
+    private String WRONG_EMAIL_OR_PASSWORD_XPATH = "/html[1]/body[1]/section[1]/div[1]/div[1]/div[1]/div[1]/form[1]/p[1]";
+    private String LOGIN_BUTTON_XPATH = "/html[1]/body[1]/section[1]/div[1]/div[1]/div[1]/div[1]/form[1]/button[1]";
 
     public SignupLoginPage(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -121,5 +125,21 @@ public class SignupLoginPage {
     public void createAccount() {
         ((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView(true);", webDriver.findElement(By.xpath(CREATE_ACCOUNT_BUTTON_XPATH)));
         webDriver.findElement(By.xpath(CREATE_ACCOUNT_BUTTON_XPATH)).click();
+    }
+
+    public void loginEmail(String email){
+        webDriver.findElement(By.xpath(EMAIL_LOGIN_XPATH)).sendKeys(email);
+    }
+
+    public void loginPassword(String password){
+        webDriver.findElement(By.xpath(PASSWORD_LOGIN_XPATH)).sendKeys(password);
+    }
+
+    public void clickLogIn(){
+        webDriver.findElement(By.xpath(LOGIN_BUTTON_XPATH)).click();
+    }
+
+    public String incorrectSignIn(){
+        return webDriver.findElement(By.xpath(WRONG_EMAIL_OR_PASSWORD_XPATH)).getText();
     }
 }
