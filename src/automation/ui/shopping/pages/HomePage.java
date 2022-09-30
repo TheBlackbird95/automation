@@ -5,6 +5,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class HomePage {
@@ -13,8 +14,16 @@ public class HomePage {
     private String expectedText;
     private final String MODAL_HEADING_XPATH = "/html[1]/body[1]/section[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/h4[1]";
     private final String HOME_BUTTON_XPATH = "/html[1]/body[1]/header[1]/div[1]/div[1]/div[1]/div[2]/div[1]/ul[1]/li[1]/a[1]";
-    private final String SIGNUP_LOGIN_XPATH = "/html[1]/body[1]/header[1]/div[1]/div[1]/div[1]/div[2]/div[1]/ul[1]/li[4]/a[1]";
+    @FindBy(xpath = "/html[1]/body[1]/header[1]/div[1]/div[1]/div[1]/div[2]/div[1]/ul[1]/li[4]/a[1]")
+    private WebElement signUpLogin;
     private final String VIEW_CART_XPATH = "/html[1]/body[1]/section[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/p[2]/a[1]/u[1]";
+
+    @FindBy(xpath = "/html[1]/body[1]/header[1]/div[1]/div[1]/div[1]/div[2]/div[1]/ul[1]/li[4]/a[1]")
+    private WebElement signOut;
+
+    public WebElement getSignUpLogin() {
+        return signUpLogin;
+    }
 
     public HomePage(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -69,8 +78,11 @@ public class HomePage {
     }
 
     public void clickSignupLogin (){
-        WebElement signupLogin = webDriver.findElement(By.xpath(SIGNUP_LOGIN_XPATH));
-        signupLogin.click();
+        signUpLogin.click();
+    }
+
+    public void signOut(){
+        signOut.click();
     }
 
 }
